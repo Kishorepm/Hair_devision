@@ -1,6 +1,6 @@
 # Hair Division — Engagement Design
 
-- **Date:** 2026-06-22
+- **Date:** 2026-06-23
 - **Status:** Approved (backbone); sub-projects pending their own specs
 - **Author:** Kish (consultant) — for Hair Division, Takapuna
 - **JD address:** 24 Hair Division

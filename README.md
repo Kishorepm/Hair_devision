@@ -24,5 +24,5 @@ owner's admin load.
 - **Sub-projects (sequenced, website-first):** website rebuild → booking SaaS →
   admin dashboard → growth automations. Each gets its own spec before it's built.
 
-See [`docs/specs/2026-06-22-hair-division-engagement-design.md`](docs/specs/2026-06-22-hair-division-engagement-design.md)
+See [`docs/specs/2026-06-23-hair-division-engagement-design.md`](docs/specs/2026-06-23-hair-division-engagement-design.md)
 for the full design.
