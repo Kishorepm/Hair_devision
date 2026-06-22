@@ -1,0 +1,16 @@
+# Local agent settings
+.claude/settings.local.json
+
+# Node / Next.js (for web/ and tools/ once they exist)
+node_modules/
+.next/
+out/
+dist/
+build/
+.env
+.env*.local
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
