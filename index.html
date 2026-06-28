@@ -375,10 +375,17 @@
     .reveal-slider {
       opacity:1;
       visibility:visible;
+      left:2rem;
+      right:2rem;
+      width:auto;
+      bottom:1rem;
     }
     .reveal-instructions {
       top:1.5rem;
       left:1.5rem;
+    }
+    .reveal-caption {
+      padding-bottom:3.2rem;
     }
     .reveal-overlay-layer {
       clip-path:polygon(0 0, 50% 0, 50% 100%, 0 100%);
@@ -589,8 +596,8 @@
       
       <!-- Visual Aid Instructions -->
       <div class="reveal-instructions" id="reveal-instructions">
-        <span class="reveal-tag">Tactile Detail Reveal</span>
-        <span class="reveal-sub">Hover to peek inside the shelves</span>
+        <span class="reveal-tag">The Space</span>
+        <span class="reveal-sub">Hover to peek inside</span>
       </div>
       
       <!-- Touch Screen Range Slider fallback -->
@@ -752,7 +759,7 @@
     } else {
       // Touch screen range input slide reveal
       if (revealInstructions) {
-        revealInstructions.querySelector('.reveal-sub').textContent = 'Drag slider to reveal shelves';
+        revealInstructions.querySelector('.reveal-sub').textContent = 'Slide to peek inside';
       }
       
       // Initial state
