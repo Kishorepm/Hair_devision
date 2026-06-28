@@ -1,0 +1,240 @@
+.calcGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  .calcGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.serviceSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.categoryBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryTitle {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage);
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+}
+
+.calcRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  margin: 0 -1rem;
+  border-bottom: 1px solid var(--line-light);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.4s var(--ease);
+}
+
+.calcRow:hover {
+  background-color: var(--sage-mist);
+  padding-left: 1.5rem;
+}
+
+.activeRow {
+  background-color: var(--sage-mist);
+  padding-left: 1.5rem;
+  border-bottom-color: var(--gold);
+}
+
+.rowContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.name {
+  font-family: var(--serif);
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--ink);
+  transition: transform 0.4s var(--ease);
+}
+
+.duration {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.rightContent {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.price {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  color: var(--ink-soft);
+}
+
+.price b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s var(--ease);
+  background-color: transparent;
+}
+
+.checkedCheckbox {
+  background-color: var(--sage-deep);
+  border-color: var(--sage-deep);
+}
+
+.checkMark {
+  width: 8px;
+  height: 8px;
+  background-color: var(--porcelain);
+  border-radius: 50%;
+  animation: popIn 0.3s var(--ease-elastic) forwards;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Summary Panel on the right */
+.summaryPanel {
+  position: sticky;
+  top: 120px;
+  z-index: 10;
+}
+
+.summaryInner {
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.selectedCount {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  color: var(--ink-soft);
+  margin-top: 1.5rem;
+}
+
+.totalAmount {
+  display: flex;
+  align-items: baseline;
+  margin: 0.5rem 0 2rem;
+}
+
+.currency {
+  font-family: var(--serif);
+  font-size: var(--font-size-xl);
+  color: var(--gold-dark);
+  font-weight: 400;
+  margin-right: 0.1rem;
+}
+
+.digits {
+  font-family: var(--serif);
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.selectedList {
+  min-height: 120px;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.empty {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Custom scrollbar for list container */
+.listContainer::-webkit-scrollbar {
+  width: 4px;
+}
+.listContainer::-webkit-scrollbar-thumb {
+  background-color: var(--sand);
+  border-radius: 2px;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.summaryItem span {
+  color: var(--ink-soft);
+}
+
+.summaryItem b {
+  font-weight: 500;
+  color: var(--sage-deep);
+}
+
+.bookBtn {
+  box-shadow: 0 15px 35px -10px rgba(49, 77, 68, 0.2);
+}
+
+.consultationNote {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 1rem;
+}

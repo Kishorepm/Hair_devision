@@ -1,5 +1,7 @@
 # Local agent settings
-.claude/settings.local.json
+.claude/
+Photos/
+outputs/
 
 # Node / Next.js (for web/ and tools/ once they exist)
 node_modules/

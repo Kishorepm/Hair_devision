@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f5f0">
+<meta name="color-scheme" content="light">
+<title>Hair Division — Takapuna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20231f; --ink-soft:#4a4e46; --sage:#6f9c8e; --sage-deep:#3d5f54;
+    --sage-mist:#eef3f0; --porcelain:#f7f5f0; --paper:#ffffff; --sand:#e7dfd2;
+    --line:rgba(32,35,31,.14);
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"Jost",system-ui,sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --pad:clamp(20px,6vw,120px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--porcelain); color:var(--ink);
+    font-family:var(--sans); font-weight:300; line-height:1.65;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none;cursor:pointer}
+  ::selection{background:#d4e5df;color:var(--ink)}
+  :focus-visible{outline:2px solid var(--sage-deep);outline-offset:3px}
+  html{scrollbar-color:var(--sand) transparent}
+
+  /* skip link — first focusable, hidden until focused */
+  .skip{position:fixed;top:10px;left:10px;z-index:101;background:var(--ink);
+    color:var(--porcelain);padding:.7em 1.2em;font-family:var(--sans);font-size:.78rem;
+    letter-spacing:.16em;text-transform:uppercase;transform:translateY(-160%);
+    transition:transform .2s var(--ease)}
+  .skip:focus{transform:none}
+
+  .eyebrow{font-family:var(--sans);font-weight:400;font-size:.72rem;
+    letter-spacing:.34em;text-transform:uppercase;color:var(--sage-deep)}
+  .display{font-family:var(--serif);font-weight:500;line-height:1.02;
+    letter-spacing:-.01em}
+  .display em{font-style:italic;font-weight:500;color:var(--sage-deep)}
+
+  /* arched image frame — the signature, drawn from the salon's arch shelf + the round logo */
+  .arch{border-radius:50% 50% 8px 8px / 42% 42% 5px 5px;overflow:hidden;
+    position:relative;will-change:transform}
+  .arch img{width:100%;height:100%;object-fit:cover}
+
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--sans);
+    font-weight:400;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+    padding:1.05em 1.9em;border:1px solid var(--ink);background:var(--ink);
+    color:var(--porcelain);transition:color .35s var(--ease),border-color .35s var(--ease),transform .15s var(--ease);
+    cursor:pointer;position:relative;overflow:hidden;z-index:1}
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--sage-deep);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease);
+  }
+  .btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .btn:hover{color:var(--porcelain);border-color:var(--sage-deep)}
+  .btn:active{transform:scale(.97)}
+  
+  .btn--ghost{background:transparent;color:var(--ink)}
+  .btn--ghost::before {
+    background: var(--ink);
+  }
+  .btn--ghost:hover{color:var(--porcelain);border-color:var(--ink)}
+
+  /* ---------- custom cursor ---------- */
+  .custom-cursor {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--sage-deep);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.25s var(--ease), height 0.25s var(--ease), background-color 0.25s var(--ease), border-color 0.25s var(--ease);
+    display: none;
+    box-sizing: border-box;
+  }
+  .custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--sage-deep);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.1s var(--ease), background-color 0.2s var(--ease);
+    display: none;
+  }
+  
+  /* custom cursor hover states */
+  .custom-cursor.hover {
+    width: 52px;
+    height: 52px;
+    background-color: rgba(111, 156, 142, 0.08);
+    border-color: var(--sage);
+  }
+  .custom-cursor.reveal-mode {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(247, 245, 240, 0.95);
+    border-color: var(--sage);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(32,35,31,0.1);
+  }
+  .custom-cursor.reveal-mode::after {
+    content: 'Reveal';
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+
+  /* hide default cursor when custom cursor active */
+  @media (hover: hover) {
+    body.has-hover {
+      cursor: none;
+    }
+    body.has-hover a,
+    body.has-hover button,
+    body.has-hover .btn,
+    body.has-hover [role="button"],
+    body.has-hover input[type="range"] {
+      cursor: none;
+    }
+    body.has-hover .custom-cursor,
+    body.has-hover .custom-cursor-dot {
+      display: block;
+    }
+  }
+
+  /* ---------- header ---------- */
+  .nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;
+    justify-content:space-between;padding:1.4rem var(--pad);transition:.5s var(--ease)}
+  .nav.scrolled{background:rgba(247,245,240,.85);backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);padding-top:.85rem;padding-bottom:.85rem;box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:.7rem;line-height:1}
+  .nav-mark{width:44px;height:44px;border-radius:50%;flex:none}
+  .brand-text{display:flex;flex-direction:column}
+  .brand b{font-family:var(--serif);font-weight:600;font-size:1.32rem;letter-spacing:.02em;font-style:normal}
+  .brand i{font-family:var(--sans);font-weight:400;font-size:.56rem;font-style:normal;
+    letter-spacing:.42em;text-transform:uppercase;color:var(--sage-deep);margin-top:.4em}
+  .nav-links{display:flex;align-items:center;gap:2.4rem}
+  .nav-links a{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    font-weight:400;position:relative}
+  .nav-links a.link::after{content:"";position:absolute;left:0;bottom:-6px;width:100%;
+    height:1px;background:var(--sage-deep);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+  .nav-links a.link:hover::after{transform:scaleX(1)}
+  .nav-book{padding:.8em 1.5em;border:1px solid var(--ink);transition:background .25s var(--ease),color .25s var(--ease)}
+  .nav-book:hover{background:var(--ink);color:var(--porcelain)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:1.5px;background:var(--ink);transition:transform .3s var(--ease),opacity .2s var(--ease);transform-origin:center}
+  .burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+  /* ---------- hero ---------- */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,80px);
+    align-items:center;padding:clamp(120px,16vh,180px) var(--pad) clamp(60px,9vh,110px);
+    position:relative}
+  
+  /* premium background texture with radial transparency blend */
+  .hero-bg{
+    position:absolute;inset:0;
+    background-image:url('assets/sage_silk_bg.png');
+    background-size:cover;
+    background-position:center;
+    opacity:0.1;
+    z-index:-2;
+    pointer-events:none;
+    mask-image:radial-gradient(circle at 75% 50%, black 10%, transparent 80%);
+    -webkit-mask-image:radial-gradient(circle at 75% 50%, black 10%, transparent 80%);
+  }
+
+  .hero-copy .eyebrow{display:block;margin-bottom:1.8rem}
+  .hero-copy h1{font-size:clamp(2.9rem,6.6vw,5.6rem);margin-bottom:1.6rem}
+  .hero-copy p{max-width:34ch;color:var(--ink-soft);font-size:1.06rem;margin-bottom:2.4rem}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+  .hero-media{position:relative}
+  .hero-media .arch{aspect-ratio:62/80;box-shadow:0 40px 80px -40px rgba(32,35,31,.45)}
+  .hero-ring{position:absolute;inset:auto -6% -7% auto;width:46%;aspect-ratio:1;
+    border:1px solid var(--sage);border-radius:50%;z-index:-1;will-change:transform}
+  .hero-tag{position:absolute;top:7%;left:-9%;background:var(--paper);
+    padding:.9rem 1.2rem;box-shadow:0 12px 28px -14px rgba(32,35,31,.22);
+    font-family:var(--serif);font-style:italic;font-size:1.05rem;z-index:2;
+    will-change:transform}
+  .hero-tag small{display:block;font-family:var(--sans);font-style:normal;
+    font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sage-deep);margin-top:.2em}
+
+  /* ---------- statement ---------- */
+  .statement{padding:clamp(70px,11vw,150px) var(--pad);text-align:center;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .statement p{font-family:var(--serif);font-size:clamp(1.7rem,3.7vw,2.9rem);
+    line-height:1.32;font-weight:400;max-width:24ch;margin:1.4rem auto 0}
+
+  /* ---------- services ---------- */
+  .services{padding:clamp(70px,11vw,140px) var(--pad)}
+  .svc-head{display:flex;justify-content:space-between;align-items:flex-end;
+    gap:2rem;flex-wrap:wrap;margin-bottom:3.4rem}
+  .svc-head h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+  .svc-head .note{font-size:.84rem;color:var(--ink-soft);max-width:30ch}
+  .svc-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(28px,4vw,64px)}
+  .svc-col h3{font-family:var(--sans);font-weight:400;font-size:.78rem;
+    letter-spacing:.26em;text-transform:uppercase;color:var(--sage-deep);
+    padding-bottom:1rem;margin-bottom:.6rem;border-bottom:1px solid var(--line)}
+  
+  /* premium interactive service rows */
+  .svc-row{
+    display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
+    padding:.95rem .75rem;margin:0 -.75rem;border-bottom:1px solid var(--line);
+    border-radius:4px;
+    transition:background-color .35s var(--ease), padding-left .35s var(--ease);
+    position:relative;overflow:hidden;
+  }
+  .svc-row::after {
+    content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+    background:var(--sage);transform:scaleX(0);transform-origin:left;
+    transition:transform .35s var(--ease);
+  }
+  .svc-row:hover{
+    background-color:var(--sage-mist);
+    padding-left:1.3rem;
+  }
+  .svc-row:hover::after{
+    transform:scaleX(1);
+  }
+  .svc-row .name{font-family:var(--serif);font-size:1.32rem;transition:color .3s var(--ease)}
+  .svc-row:hover .name{color:var(--sage-deep)}
+  .svc-row .price{font-family:var(--sans);font-weight:400;font-size:.92rem;
+    color:var(--ink-soft);white-space:nowrap;transition:transform .3s var(--ease)}
+  .svc-row .price b{font-weight:500;color:var(--ink);transition:color .3s var(--ease)}
+  .svc-row:hover .price b{color:var(--sage-deep)}
+
+  /* ---------- interactive atmosphere reveal (before/after logic) ---------- */
+  .atmos-reveal-section {
+    padding:clamp(60px, 9vw, 130px) var(--pad);
+    background:var(--porcelain);
+    border-bottom:1px solid var(--line);
+  }
+  .atmos-head {
+    max-width:36ch;margin:0 auto 3rem;text-align:center;
+  }
+  .atmos-head h2 {
+    font-size:clamp(2.1rem, 4.4vw, 3.4rem);margin-top:1rem;
+  }
+  .reveal-container {
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    min-height:480px;
+    max-height:720px;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 40px 80px -40px rgba(32,35,31,.35);
+    background-color:var(--sand);
+  }
+  .reveal-base-layer,
+  .reveal-overlay-layer {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+  }
+  .reveal-base-layer img,
+  .reveal-overlay-layer img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    pointer-events:none;
+  }
+  .reveal-overlay-layer {
+    clip-path:circle(0px at 0px 0px);
+    transition:clip-path 0.08s linear;
+    z-index:2;
+  }
+  .reveal-caption {
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:2.5rem var(--pad) 1.5rem;
+    color:#fff;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.2rem;
+    z-index:10;
+    pointer-events:none;
+  }
+  .base-caption {
+    background:linear-gradient(transparent, rgba(20,22,19,0.7));
+  }
+  .overlay-caption {
+    background:linear-gradient(transparent, rgba(61,95,84,0.85));
+  }
+  
+  .reveal-instructions {
+    position:absolute;
+    top:2rem;
+    left:2rem;
+    z-index:15;
+    background:rgba(247,245,240,0.85);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    padding:0.8rem 1.2rem;
+    border-radius:6px;
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+  }
+  .reveal-tag {
+    font-family:var(--sans);
+    font-weight:500;
+    font-size:0.65rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+  }
+  .reveal-sub {
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:0.95rem;
+    color:var(--ink);
+    margin-top:0.2rem;
+  }
+  
+  .reveal-slider {
+    position:absolute;
+    bottom:1.5rem;
+    right:2rem;
+    z-index:20;
+    width:180px;
+    height:4px;
+    background:rgba(255,255,255,0.3);
+    border-radius:2px;
+    outline:none;
+    -webkit-appearance:none;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.3s, visibility 0.3s;
+  }
+  .reveal-slider::-webkit-slider-thumb {
+    -webkit-appearance:none;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--sage);
+    cursor:ew-resize;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  @media (pointer: coarse) {
+    .reveal-slider {
+      opacity:1;
+      visibility:visible;
+    }
+    .reveal-instructions {
+      top:1.5rem;
+      left:1.5rem;
+    }
+    .reveal-overlay-layer {
+      clip-path:polygon(0 0, 50% 0, 50% 100%, 0 100%);
+      transition:clip-path 0.15s var(--ease);
+    }
+  }
+
+  /* ---------- team ---------- */
+  .team{padding:clamp(70px,11vw,150px) var(--pad);background:var(--sage-mist)}
+  .team-head{text-align:center;max-width:32ch;margin:0 auto 3.4rem}
+  .team-head h2{font-size:clamp(2.1rem,4.4vw,3.4rem);margin-top:1rem}
+  .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,72px);
+    max-width:880px;margin:0 auto}
+  .member{text-align:center}
+  .member .arch{aspect-ratio:64/74;max-width:380px;margin:0 auto 1.6rem;
+    box-shadow:0 36px 70px -44px rgba(32,35,31,.42)}
+  .member .role{display:block;margin-bottom:.7rem}
+  .member h3{font-family:var(--serif);font-weight:500;font-size:1.9rem;margin-bottom:.6rem}
+  .member p{color:var(--ink-soft);max-width:34ch;margin:0 auto;font-size:1rem}
+
+  /* ---------- visit ---------- */
+  .visit{padding:clamp(70px,11vw,150px) var(--pad);display:grid;
+    grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+  .visit h2{font-size:clamp(2.2rem,4.6vw,3.6rem);margin-bottom:2rem}
+  .visit dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 2.4rem}
+  .visit dt{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--sage-deep);padding-top:.5rem}
+  .visit dd{font-family:var(--serif);font-size:1.25rem;padding:.35rem 0;
+    border-bottom:1px solid var(--line)}
+  .visit .hours-note{font-family:var(--sans);font-size:.78rem;
+    color:var(--ink-soft);margin-top:1rem}
+  .visit-cta{margin-top:2.6rem}
+  .visit-aside{align-self:stretch}
+  .visit-aside .arch{height:100%;min-height:380px}
+
+  /* ---------- footer ---------- */
+  .foot{background:var(--ink);color:#cdd2cb;padding:clamp(54px,8vw,90px) var(--pad) 2.4rem;
+    text-align:center}
+  .foot-logo{width:128px;margin:0 auto 1.8rem;border-radius:50%;
+    background:#fff;padding:6px}
+  .foot p{font-size:.82rem;letter-spacing:.04em;margin:.3rem 0}
+  .foot .small{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+    color:#7f867d;margin-top:2.4rem}
+
+  /* ---------- reveal scroll intro ---------- */
+  .reveal{opacity:0;transform:translateY(26px);will-change:opacity,transform;
+    transition:opacity .65s var(--ease),transform .65s var(--ease)}
+  .reveal.in{opacity:1;transform:none;will-change:auto}
+  
+  .svc-groups.in .svc-col:nth-child(2){transition-delay:.08s}
+  .svc-groups.in .svc-col:nth-child(3){transition-delay:.16s}
+  .svc-col{transition:opacity .65s var(--ease),transform .65s var(--ease)}
+  .svc-groups:not(.in) .svc-col{opacity:0;transform:translateY(18px)}
+  .svc-groups.in .svc-col{opacity:1;transform:none}
+
+  /* ---------- mobile menu backdrop ---------- */
+  .scrim{position:fixed;inset:0;z-index:40;background:rgba(32,35,31,.32);
+    opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s var(--ease)}
+  .scrim.open{opacity:1;visibility:visible}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .nav-links{position:fixed;inset:0 0 0 auto;width:min(78vw,340px);flex-direction:column;
+      justify-content:center;gap:2.2rem;background:var(--porcelain);transform:translateX(100%);
+      transition:.5s var(--ease);box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}
+    .nav-links.open{transform:none}
+    .nav-links a{font-size:1rem;padding:.6em 1em}
+    .burger{display:flex;z-index:60}
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:140px}
+    .hero-bg{mask-image:none;-webkit-mask-image:none;opacity:0.06}
+    .hero-copy p{margin-left:auto;margin-right:auto}
+    .hero-actions{justify-content:center}
+    .hero-media{order:-1;max-width:420px;margin:0 auto 1.5rem}
+    .hero-tag{left:0}
+    .svc-groups{grid-template-columns:1fr}
+    .atmos-reveal-section, .visit{grid-template-columns:1fr}
+    .reveal-container{aspect-ratio:4/3;min-height:360px}
+    .team-grid{grid-template-columns:1fr;max-width:380px}
+    .visit-aside .arch{min-height:300px}
+  }
+  
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal,.svc-col{opacity:1;transform:none;transition:none}
+    .btn,.nav,.btn::before{transition:none}
+    .hero-media .arch, .hero-ring, .hero-tag {transform:none !important;transition:none !important}
+  }
+</style>
+<noscript><style>.reveal,.svc-col{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<a class="skip" href="#top">Skip to content</a>
+<div class="scrim" id="scrim"></div>
+
+<!-- Custom Cursor Elements -->
+<div class="custom-cursor" id="custom-cursor"></div>
+<div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top">
+    <img class="nav-mark" src="assets/logo.png" alt="Hair Division logo">
+    <span class="brand-text"><b>Hair Division</b><i>Takapuna</i></span>
+  </a>
+  <nav class="nav-links" id="menu">
+    <a class="link" href="#services">Services</a>
+    <a class="link" href="#atmosphere">Atmosphere</a>
+    <a class="link" href="#team">Team</a>
+    <a class="link" href="#visit">Visit</a>
+    <a class="nav-book" href="#visit">Book</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <!-- Premium sage silk texture background -->
+    <div class="hero-bg"></div>
+    
+    <div class="hero-copy">
+      <span class="eyebrow">Hair salon · North Shore, Auckland</span>
+      <h1 class="display">Beautiful hair,<br><em>thirty years</em><br>in the making.</h1>
+      <p>Hair Division is Raine's Takapuna salon — expert cut, colour and care in a calm, unhurried space, with Wella's premium range.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#visit">Book an appointment</a>
+        <a class="btn btn--ghost" href="#services">View services</a>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <div class="arch"><img src="assets/img_8232.jpg" alt="Long, glossy, freshly styled hair at Hair Division Takapuna"></div>
+      <div class="hero-ring"></div>
+      <div class="hero-tag">Cut · Colour · Care<small>Since the 90s</small></div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <span class="eyebrow">The promise</span>
+    <p class="display">A small salon with a simple promise — you leave looking and feeling your best, <em>every</em> visit.</p>
+  </section>
+
+  <section class="services" id="services" aria-label="Services and pricing">
+    <div class="svc-head reveal">
+      <div>
+        <span class="eyebrow">What we do</span>
+        <h2 class="display" style="margin-top:1rem">Services &amp; pricing</h2>
+      </div>
+      <p class="note">Prices shown are starting points. Your exact quote is confirmed in a quick consultation. <em>Final menu to confirm with Raine.</em></p>
+    </div>
+    <div class="svc-groups reveal">
+      <div class="svc-col">
+        <h3>Cut &amp; Style</h3>
+        <div class="svc-row"><span class="name">Women's cut</span><span class="price">from <b>$110</b></span></div>
+        <div class="svc-row"><span class="name">Men's cut</span><span class="price"><b>$65</b></span></div>
+        <div class="svc-row"><span class="name">Student cut</span><span class="price">on request</span></div>
+        <div class="svc-row"><span class="name">Blow wave</span><span class="price">from <b>$55</b></span></div>
+        <div class="svc-row"><span class="name">Occasion styling</span><span class="price">on request</span></div>
+      </div>
+      <div class="svc-col">
+        <h3>Colour</h3>
+        <div class="svc-row"><span class="name">Regrowth colour</span><span class="price">from <b>$110</b></span></div>
+        <div class="svc-row"><span class="name">Half-head foils</span><span class="price">from <b>$142</b></span></div>
+        <div class="svc-row"><span class="name">Full-head foils</span><span class="price">to <b>$210</b></span></div>
+        <div class="svc-row"><span class="name">Toner / gloss</span><span class="price">on request</span></div>
+      </div>
+      <div class="svc-col">
+        <h3>Treatments</h3>
+        <div class="svc-row"><span class="name">Conditioning treatment</span><span class="price">add-on</span></div>
+        <div class="svc-row"><span class="name">Smooth filler treatment</span><span class="price">from <b>$250</b></span></div>
+        <div class="svc-row"><span class="name">Wella home care</span><span class="price">in salon</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Atmosphere Section (Direct Manipulation Reveal Slider) -->
+  <section class="atmos-reveal-section" id="atmosphere" aria-label="Inside the salon">
+    <div class="atmos-head reveal">
+      <span class="eyebrow">Our Space</span>
+      <h2 class="display">Atmosphere</h2>
+    </div>
+    <div class="reveal-container id-reveal-area" id="reveal-container">
+      <!-- Base Layer: Salon Floor (Wide Shot) -->
+      <div class="reveal-base-layer">
+        <img src="assets/img_0081.jpg" alt="The Hair Division salon floor in Takapuna">
+        <div class="reveal-caption base-caption">Calm, light and unhurried.</div>
+      </div>
+      
+      <!-- Overlay Layer: Wella Products (Arched shelf detail) -->
+      <div class="reveal-overlay-layer" id="reveal-overlay">
+        <img src="assets/img_0066.jpg" alt="Wella product range on the arched shelf at Hair Division">
+        <div class="reveal-caption overlay-caption">The Wella range, in store.</div>
+      </div>
+      
+      <!-- Visual Aid Instructions -->
+      <div class="reveal-instructions" id="reveal-instructions">
+        <span class="reveal-tag">Tactile Detail Reveal</span>
+        <span class="reveal-sub">Hover to peek inside the shelves</span>
+      </div>
+      
+      <!-- Touch Screen Range Slider fallback -->
+      <input type="range" class="reveal-slider" id="reveal-slider" min="0" max="100" value="50" aria-label="Slide to reveal products">
+    </div>
+  </section>
+
+  <section class="team" id="team" aria-label="The team">
+    <div class="team-head reveal">
+      <span class="eyebrow">The team</span>
+      <h2 class="display">The hands behind your hair.</h2>
+    </div>
+    <div class="team-grid">
+      <article class="member reveal">
+        <div class="arch"><img src="assets/img_8233.jpg" loading="lazy" alt="Raine, owner and senior stylist at Hair Division"></div>
+        <span class="eyebrow role">Owner &amp; Senior Stylist</span>
+        <h3>Raine</h3>
+        <p>Thirty-plus years behind the chair. Raine built Hair Division around unhurried, expert care — you're listened to, never rushed.</p>
+      </article>
+      <article class="member reveal">
+        <div class="arch"><img src="assets/img_8232.jpg" loading="lazy" alt="Ivy, stylist at Hair Division" style="object-position:50% 16%"></div>
+        <span class="eyebrow role">Stylist</span>
+        <h3>Ivy</h3>
+        <p>A fresh eye for modern cut, colour and styling. Book with Raine or Ivy — both take appointments.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-label="Visit us">
+    <div class="reveal">
+      <span class="eyebrow">Visit us</span>
+      <h2 class="display" style="margin-top:1rem">Find us in Takapuna.</h2>
+      <dl>
+        <dt>Where</dt><dd><a href="https://maps.google.com/?q=446+Lake+Road,+Takapuna,+Auckland" target="_blank" rel="noopener">446 Lake Road, Takapuna, Auckland</a></dd>
+        <dt>Call</dt><dd><a href="tel:+6494889295">09 488 9295</a></dd>
+        <dt>Tue–Fri</dt><dd>9:15am – 5:30pm</dd>
+        <dt>Thu late</dt><dd>until 7:00pm</dd>
+        <dt>Saturday</dt><dd>9:00am – 4:00pm</dd>
+      </dl>
+      <p class="hours-note">Sun &amp; Mon closed. Hours to be confirmed with Raine.</p>
+      <div class="visit-cta"><a class="btn" href="tel:+6494889295">Call to book</a></div>
+    </div>
+    <aside class="visit-aside reveal">
+      <div class="arch"><img src="assets/img_0057.jpg" loading="lazy" alt="Inside Hair Division, Takapuna"></div>
+    </aside>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <img class="foot-logo" src="assets/logo.png" loading="lazy" alt="Hair Division Takapuna logo">
+  <p>446 Lake Road, Takapuna · 09 488 9295</p>
+  <p>Tuesday – Saturday by appointment</p>
+  <p class="small">Hair Division Takapuna — mockup concept</p>
+</footer>
+
+<script>
+  // check touch device capabilities
+  var isTouch = window.matchMedia('(pointer: coarse)').matches;
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // header solidifies on scroll
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40)},{passive:true});
+
+  // mobile menu
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu'),scrim=document.getElementById('scrim');
+  function setMenu(open){
+    menu.classList.toggle('open',open);
+    burger.classList.toggle('open',open);
+    scrim.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  }
+  burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
+  scrim.addEventListener('click',function(){setMenu(false)});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false)});
+  addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  // ---------- custom cursor script ----------
+  var cursor = document.getElementById('custom-cursor');
+  var cursorDot = document.getElementById('custom-cursor-dot');
+  var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  var pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  var ratio = 0.15; // lerp speed for follow cursor lag
+
+  if (cursor && cursorDot && !isTouch && !prefersReducedMotion) {
+    document.body.classList.add('has-hover');
+
+    window.addEventListener('mousemove', function(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      // center dot moves instantly
+      cursorDot.style.transform = 'translate3d(' + mouse.x + 'px, ' + mouse.y + 'px, 0) translate(-50%, -50%)';
+    });
+
+    // inertial loop for outer ring
+    function renderCursor() {
+      pos.x += (mouse.x - pos.x) * ratio;
+      pos.y += (mouse.y - pos.y) * ratio;
+      cursor.style.transform = 'translate3d(' + pos.x + 'px, ' + pos.y + 'px, 0) translate(-50%, -50%)';
+      requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+
+    // hover expansions
+    var clickables = document.querySelectorAll('a, button, .btn, .svc-row');
+    clickables.forEach(function(item) {
+      item.addEventListener('mouseenter', function() {
+        cursor.classList.add('hover');
+      });
+      item.addEventListener('mouseleave', function() {
+        cursor.classList.remove('hover');
+      });
+    });
+  }
+
+  // ---------- atmosphere direct manipulation reveal script ----------
+  var revealContainer = document.getElementById('reveal-container');
+  var revealOverlay = document.getElementById('reveal-overlay');
+  var revealSlider = document.getElementById('reveal-slider');
+  var revealInstructions = document.getElementById('reveal-instructions');
+
+  if (revealContainer && revealOverlay) {
+    if (!isTouch) {
+      // Mouse tracking for desktop reveal peephole
+      revealContainer.addEventListener('mousemove', function(e) {
+        var rect = revealContainer.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        revealOverlay.style.clipPath = 'circle(140px at ' + x + 'px ' + y + 'px)';
+        
+        if (cursor) {
+          cursor.classList.add('reveal-mode');
+        }
+      });
+
+      revealContainer.addEventListener('mouseleave', function() {
+        revealOverlay.style.clipPath = 'circle(0px at 50% 50%)';
+        if (cursor) {
+          cursor.classList.remove('reveal-mode');
+        }
+      });
+    } else {
+      // Touch screen range input slide reveal
+      if (revealInstructions) {
+        revealInstructions.querySelector('.reveal-sub').textContent = 'Drag slider to reveal shelves';
+      }
+      
+      // Initial state
+      revealOverlay.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
+      
+      revealSlider.addEventListener('input', function() {
+        var val = revealSlider.value;
+        revealOverlay.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
+      });
+    }
+  }
+
+  // ---------- scroll-scrubbing parallax transforms ----------
+  var ticking = false;
+  var heroArch = document.querySelector('.hero-media .arch');
+  var heroRing = document.querySelector('.hero-ring');
+  var heroTag = document.querySelector('.hero-tag');
+
+  function updateScrollTransforms() {
+    var scrollY = window.scrollY;
+    
+    if (heroArch) {
+      var archScale = 1 + scrollY * 0.00012;
+      var archTranslateY = scrollY * 0.08;
+      heroArch.style.transform = 'translate3d(0, ' + archTranslateY + 'px, 0) scale(' + archScale + ')';
+    }
+    
+    if (heroRing) {
+      var ringRotation = scrollY * 0.08;
+      var ringScale = 1 + scrollY * 0.0003;
+      heroRing.style.transform = 'translate3d(0, 0, 0) rotate(' + ringRotation + 'deg) scale(' + ringScale + ')';
+    }
+    
+    if (heroTag) {
+      var tagTranslateY = scrollY * -0.15;
+      heroTag.style.transform = 'translate3d(-9%, ' + tagTranslateY + 'px, 0)';
+    }
+    
+    ticking = false;
+  }
+
+  if (!prefersReducedMotion && (heroArch || heroRing || heroTag)) {
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollTransforms);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>

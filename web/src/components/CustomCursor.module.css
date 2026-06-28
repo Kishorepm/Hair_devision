@@ -1,0 +1,76 @@
+.customCursorRing {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: -22px; /* Center alignment offset */
+  margin-left: -22px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference; /* Invert contrast blending */
+  will-change: transform;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease), border-color 0.3s var(--ease), background-color 0.3s var(--ease);
+}
+
+.customCursorDot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: -3px;
+  margin-left: -3px;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  will-change: transform;
+  transition: transform 0.1s var(--ease), background-color 0.3s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease);
+}
+
+/* Hover state on normal links/buttons */
+.hovered {
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+  background-color: rgba(197, 168, 128, 0.1);
+  border-color: var(--sage);
+}
+
+.hoveredDot {
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  margin-left: -5px;
+  background-color: var(--sage);
+}
+
+/* Reveal state inside atmosphere section */
+.reveal {
+  width: 90px;
+  height: 90px;
+  margin-top: -45px;
+  margin-left: -45px;
+  background-color: var(--porcelain);
+  border-color: var(--gold);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: normal; /* Normal mode to read text */
+  box-shadow: 0 10px 30px rgba(24, 26, 23, 0.08);
+}
+
+.reveal::after {
+  content: 'Reveal';
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+}

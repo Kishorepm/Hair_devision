@@ -1,0 +1,88 @@
+.preloaderContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: var(--porcelain);
+  z-index: 1;
+}
+
+.leftDoor {
+  left: 0;
+  border-right: 1px solid var(--line-light);
+}
+
+.rightDoor {
+  right: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.monogram {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monogram span {
+  display: inline-block;
+  color: var(--ink);
+}
+
+.monogram .amp {
+  font-size: 3rem;
+  color: var(--gold-dark);
+  font-style: italic;
+  margin: 0 0.2rem;
+}
+
+.brandTitle {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-top: 1.5rem;
+}
+
+.loadingBarWrapper {
+  width: 140px;
+  height: 1px;
+  background-color: var(--line);
+  margin-top: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.loadingBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--gold-dark);
+}
