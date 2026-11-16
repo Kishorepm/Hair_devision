@@ -1,0 +1,41 @@
+/* Hair Division — shared styles for print-ready signage & stationery.
+   Every sheet is sized in millimetres and exported to vector PDF by
+   brand/tools/export_print.py (Chrome headless). */
+
+@font-face{font-family:"Cormorant Garamond";font-weight:400;font-style:normal;src:url(../fonts/CormorantGaramond-Regular.ttf)}
+@font-face{font-family:"Cormorant Garamond";font-weight:500;font-style:normal;src:url(../fonts/CormorantGaramond-Medium.ttf)}
+@font-face{font-family:"Cormorant Garamond";font-weight:400;font-style:italic;src:url(../fonts/CormorantGaramond-Italic.ttf)}
+@font-face{font-family:"Cormorant Garamond";font-weight:500;font-style:italic;src:url(../fonts/CormorantGaramond-MediumItalic.ttf)}
+@font-face{font-family:"Jost";font-weight:300;src:url(../fonts/Jost-Light.ttf)}
+@font-face{font-family:"Jost";font-weight:400;src:url(../fonts/Jost-Regular.ttf)}
+@font-face{font-family:"Jost";font-weight:500;src:url(../fonts/Jost-Medium.ttf)}
+
+:root{
+  --ink:#20231F; --ink-soft:#4A4E46; --sage:#749E98; --deep:#3E605B;
+  --mist:#EEF3F1; --porcelain:#F7F5F0; --sand:#E7DFD2; --paper:#FFFFFF;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#d9d6cf;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:var(--sans);font-weight:300;color:var(--ink)}
+img{display:block}
+
+.page{position:relative;overflow:hidden;break-after:page;page-break-after:always;
+  width:var(--w);height:var(--h);margin:0}
+@media screen{.page + .page{margin-top:6mm}}
+
+.serif{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.01em}
+.serif em{font-style:italic;color:var(--deep)}
+.label{font-family:var(--sans);font-weight:400;text-transform:uppercase;letter-spacing:.3em}
+.on-ink{background:var(--ink);color:var(--porcelain)}
+.on-ink .serif em{color:var(--sage)}
+.on-porcelain{background:var(--porcelain)}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+
+/* the divider device from the logo: line · dot · line */
+.device{display:flex;align-items:center;justify-content:center;gap:var(--dg,3mm);color:var(--sage)}
+.device::before,.device::after{content:"";height:var(--dw,.35mm);width:var(--dl,24mm);background:currentColor}
+.device i{width:var(--dd,1.6mm);height:var(--dd,1.6mm);border-radius:50%;background:currentColor}
+
+/* the arch — the brand's signature shape */
+.arch{border-radius:50% 50% 0 0 / 34% 34% 0 0}

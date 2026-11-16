@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f7f5f0">
+<title>Hair Division · Brand guidelines</title>
+<link rel="icon" href="logo/svg/hair-division-icon-porcelain.svg">
+<style>
+  @font-face{font-family:"Cormorant Garamond";font-weight:400;font-display:swap;src:url(fonts/CormorantGaramond-Regular.ttf)}
+  @font-face{font-family:"Cormorant Garamond";font-weight:500;font-display:swap;src:url(fonts/CormorantGaramond-Medium.ttf)}
+  @font-face{font-family:"Cormorant Garamond";font-weight:400;font-style:italic;font-display:swap;src:url(fonts/CormorantGaramond-Italic.ttf)}
+  @font-face{font-family:"Cormorant Garamond";font-weight:500;font-style:italic;font-display:swap;src:url(fonts/CormorantGaramond-MediumItalic.ttf)}
+  @font-face{font-family:"Jost";font-weight:300;font-display:swap;src:url(fonts/Jost-Light.ttf)}
+  @font-face{font-family:"Jost";font-weight:400;font-display:swap;src:url(fonts/Jost-Regular.ttf)}
+  @font-face{font-family:"Jost";font-weight:500;font-display:swap;src:url(fonts/Jost-Medium.ttf)}
+
+  :root{
+    --ink:#20231F; --ink-soft:#4A4E46; --sage:#749E98; --deep:#3E605B; --mist:#EEF3F1;
+    --porcelain:#F7F5F0; --paper:#FFFFFF; --sand:#E7DFD2; --brass:#B08D57;
+    --line:rgba(32,35,31,.14);
+    --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+    --ease:cubic-bezier(.23,1,.32,1);
+    --pad:clamp(20px,5vw,72px); --rail:230px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:24px}
+  body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-weight:300;
+    line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--deep);outline-offset:3px;border-radius:2px}
+  ::selection{background:#d3e3df}
+
+  .label{font-weight:400;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--deep)}
+  .serif{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.01em}
+  .serif em{font-style:italic;color:var(--deep)}
+  p{max-width:62ch}
+  p + p{margin-top:.8em}
+  strong{font-weight:500}
+  code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.84em}
+
+  /* ---------- layout: rail + content ---------- */
+  .rail{position:fixed;inset:0 auto 0 0;width:var(--rail);padding:34px 26px;display:flex;flex-direction:column;
+    border-right:1px solid var(--line);background:var(--porcelain);z-index:5}
+  .rail img{width:112px;margin-bottom:34px}
+  .rail a{display:block;text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:400;padding:.5em 0;color:var(--ink-soft);transition:color .2s var(--ease),transform .2s var(--ease)}
+  .rail a i{font-style:normal;color:var(--sage);margin-right:.9em;font-size:.68rem}
+  .rail a.on{color:var(--ink);transform:translateX(6px)}
+  @media(hover:hover){.rail a:hover{color:var(--ink)}}
+  .rail .ver{margin-top:auto;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);line-height:1.9}
+  main{margin-left:var(--rail)}
+  section{padding:clamp(56px,8vw,112px) var(--pad);border-bottom:1px solid var(--line)}
+  section > header{margin-bottom:clamp(28px,4vw,52px);max-width:760px}
+  section > header h2{font-size:clamp(2.2rem,4.4vw,3.5rem);margin:.9rem 0 1.1rem}
+  section > header p{color:var(--ink-soft);font-size:1.06rem}
+  h3{font-family:var(--serif);font-weight:500;font-size:1.55rem;line-height:1.15;margin-bottom:.5rem}
+  .grid{display:grid;gap:clamp(14px,2vw,24px)}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  .sub{margin-top:clamp(40px,6vw,76px)}
+  .sub > .label{display:block;margin-bottom:1.3rem}
+
+  /* ---------- cover ---------- */
+  .cover{min-height:min(100svh,860px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:var(--pad);
+    background:var(--mist)}
+  .cover h1{font-size:clamp(3rem,6.6vw,5.8rem);margin:1.4rem 0 1.6rem}
+  .cover p{color:var(--ink-soft);font-size:1.08rem;max-width:44ch}
+  .cover .meta{margin-top:2.4rem;display:flex;gap:2.4rem;flex-wrap:wrap}
+  .cover .meta span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400}
+  .cover .meta b{display:block;font-family:var(--serif);font-size:1.25rem;letter-spacing:0;text-transform:none;font-weight:500;margin-top:.2rem}
+  .cover-arch{justify-self:center;width:min(100%,430px);aspect-ratio:10/13;background:var(--sage);
+    border-radius:50% 50% 0 0 / 38.5% 38.5% 0 0;display:grid;place-items:center;align-self:end;margin-bottom:calc(-1 * clamp(56px,8vw,112px))}
+  .cover-arch img{width:62%}
+
+  /* ---------- tiles ---------- */
+  .tile{position:relative;border-radius:10px;display:grid;place-items:center;padding:clamp(22px,4vw,54px);
+    min-height:250px;border:1px solid var(--line);overflow:hidden}
+  .tile img{max-height:210px;width:auto;max-width:100%}
+  .tile.wide img{max-height:150px}
+  .t-porcelain{background:var(--porcelain)} .t-paper{background:var(--paper)} .t-ink{background:var(--ink);border-color:transparent}
+  .t-sage{background:var(--sage);border-color:transparent} .t-mist{background:var(--mist)} .t-sand{background:var(--sand)}
+  .cap{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin-top:.8rem;font-size:.86rem;color:var(--ink-soft)}
+  .cap b{font-weight:500;color:var(--ink)}
+  .cap a{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;color:var(--deep);text-decoration:none;
+    border-bottom:1px solid currentColor;white-space:nowrap}
+
+  /* clear space diagram */
+  .clear{position:relative;display:inline-grid;padding:var(--x)}
+  .clear{--x:clamp(28px,5vw,58px)}
+  .clear::before{content:"";position:absolute;inset:0;border:1px dashed var(--sage);border-radius:6px}
+  .clear::after{content:"x";position:absolute;left:0;top:50%;width:var(--x);text-align:center;transform:translateY(-50%);
+    font-family:var(--serif);font-style:italic;color:var(--deep);font-size:1.1rem}
+  .clear img{width:clamp(150px,22vw,250px);background:rgba(116,158,152,.1)}
+
+  /* don'ts */
+  .dont{position:relative}
+  .dont .tile{min-height:190px}
+  .dont .tile img{max-height:130px}
+  .dont .tile::after{content:"";position:absolute;right:12px;top:12px;width:22px;height:22px;border-radius:50%;
+    background:#a4472f linear-gradient(45deg,transparent 45%,#fff 45% 55%,transparent 55%)}
+
+  /* ---------- colour ---------- */
+  .swatch{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--paper);text-align:left;
+    font:inherit;color:inherit;cursor:pointer;display:block;width:100%;transition:transform .16s var(--ease)}
+  .swatch:active{transform:scale(.98)}
+  .swatch .chip{height:clamp(110px,13vw,170px);display:flex;align-items:flex-end;justify-content:space-between;padding:14px 16px;
+    font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400}
+  .swatch .chip span:last-child{opacity:0;transform:translateY(4px);transition:opacity .18s var(--ease),transform .18s var(--ease)}
+  .swatch.copied .chip span:last-child{opacity:1;transform:none}
+  @media(hover:hover){.swatch:hover .chip span:last-child{opacity:.75;transform:none}}
+  .swatch dl{padding:14px 16px 16px;display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;font-size:.8rem}
+  .swatch dt{color:var(--ink-soft);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;padding-top:.22em}
+  .swatch dd{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.76rem}
+  .swatch h3{padding:14px 16px 0;font-size:1.3rem;margin:0}
+  .swatch p{padding:2px 16px 0;font-size:.82rem;color:var(--ink-soft);line-height:1.45;min-height:3.7em}
+  .ratio{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,20px)}
+  .ratio div{border-radius:10px;padding:20px 20px 16px;border:1px solid var(--line)}
+  .ratio b{display:block;font-family:var(--serif);font-size:1.9rem;font-weight:500;line-height:1}
+  .ratio span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;display:block;margin-top:.6rem}
+  .bar{display:flex;height:58px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+  .bar i{display:block}
+
+  /* ---------- type ---------- */
+  .spec{display:grid;grid-template-columns:190px 1fr;gap:1.2rem 2.4rem;align-items:baseline;padding:1.5rem 0;border-top:1px solid var(--line)}
+  .spec small{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;color:var(--ink-soft);line-height:1.8}
+  .spec small b{display:block;color:var(--ink);font-weight:500}
+  .face{font-family:var(--serif);font-size:clamp(4rem,11vw,9rem);line-height:.9;font-weight:500}
+  .face.sans{font-family:var(--sans);font-weight:300;letter-spacing:-.02em}
+  .glyphs{font-size:1.2rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:1rem;max-width:none;word-break:break-all}
+
+  /* ---------- motif ---------- */
+  .motif{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;background:var(--paper);padding:14%}
+  .m-arch{width:62%;aspect-ratio:10/13;background:var(--sage);border-radius:50% 50% 0 0 / 38.5% 38.5% 0 0}
+  .m-arch.line{background:none;border:2px solid var(--sage);border-bottom:0}
+  .m-ring{width:78%;aspect-ratio:1;border:2px solid var(--sage);border-radius:50%}
+  .m-device{display:flex;align-items:center;gap:12px;color:var(--sage);width:100%}
+  .m-device::before,.m-device::after{content:"";flex:1;height:2px;background:currentColor}
+  .m-device i{width:9px;height:9px;border-radius:50%;background:currentColor}
+
+  /* ---------- voice ---------- */
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--paper)}
+  .pair > div{padding:clamp(20px,3vw,34px)}
+  .pair > div + div{border-left:1px solid var(--line);background:var(--porcelain)}
+  .pair li{list-style:none;font-family:var(--serif);font-size:1.3rem;line-height:1.3;padding:.55rem 0;border-bottom:1px solid var(--line)}
+  .pair li:last-child{border:0}
+  .pair div + div li{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:rgba(164,71,47,.6);text-decoration-thickness:1px}
+
+  /* ---------- shopfront ---------- */
+  .shop{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#dfe5e2}
+  .shop svg{width:100%;height:auto}
+  .legend{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,2vw,24px);margin-top:1.4rem}
+  .legend b{font-family:var(--serif);font-size:1.7rem;font-weight:500;color:var(--sage);display:block;line-height:1}
+  .legend h4{font-weight:500;font-size:.95rem;margin:.5rem 0 .2rem}
+  .legend p{font-size:.84rem;color:var(--ink-soft);line-height:1.5}
+
+  /* ---------- sheets ---------- */
+  .sheet{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:center;
+    padding:clamp(24px,4vw,48px) 0;border-top:1px solid var(--line)}
+  .sheet:nth-of-type(even) .shot{order:2}
+  .shot{background:var(--sand);border-radius:10px;padding:clamp(18px,3vw,40px);display:grid;place-items:center}
+  .shot img{max-height:440px;width:auto;box-shadow:0 30px 60px -34px rgba(32,35,31,.55)}
+  .sheet ul{list-style:none;margin:1rem 0 1.4rem}
+  .sheet li{display:grid;grid-template-columns:96px 1fr;gap:1rem;padding:.5rem 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .sheet li span:first-child{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400;color:var(--deep);padding-top:.3em}
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-weight:400;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+    padding:.95em 1.5em;border:1px solid var(--ink);background:var(--ink);color:var(--porcelain);text-decoration:none;
+    transition:background .2s var(--ease),border-color .2s var(--ease),transform .16s var(--ease)}
+  .btn:active{transform:scale(.97)}
+  .btn.ghost{background:none;color:var(--ink)}
+  @media(hover:hover){.btn:hover{background:var(--deep);border-color:var(--deep);color:var(--porcelain)}}
+  .flag{display:inline-block;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:#a4472f;
+    border:1px solid currentColor;padding:.25em .6em;border-radius:3px;margin-left:.6em;vertical-align:middle}
+
+  /* ---------- files ---------- */
+  .files{width:100%;border-collapse:collapse;font-size:.92rem}
+  .files th{text-align:left;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400;color:var(--deep);padding:.7rem 1rem .7rem 0}
+  .files td{padding:.75rem 1rem .75rem 0;border-top:1px solid var(--line);vertical-align:top}
+  .files td:first-child{font-family:var(--serif);font-size:1.2rem;white-space:nowrap}
+  .files a{color:var(--deep);margin-right:.9em;white-space:nowrap}
+  .scroller{overflow-x:auto}
+
+  footer{padding:clamp(40px,6vw,72px) var(--pad);background:var(--ink);color:#cdd2cb;display:flex;justify-content:space-between;
+    gap:2rem;align-items:center;flex-wrap:wrap}
+  footer img{width:210px}
+  footer p{font-size:.78rem;letter-spacing:.06em}
+
+  @media(max-width:1020px){
+    .rail{position:static;width:auto;flex-direction:row;align-items:center;gap:1.4rem;padding:14px var(--pad);border-right:0;
+      border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+    .rail img{width:44px;margin:0;flex:none} .rail .ver{display:none} .rail a.on{transform:none}
+    main{margin-left:0}
+    .g4{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(2,1fr)}
+    .legend{grid-template-columns:repeat(2,1fr)} .ratio{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:700px){
+    .cover{grid-template-columns:1fr;min-height:0}
+    .cover-arch{width:70%}
+    .g2,.g3{grid-template-columns:1fr}
+    .sheet,.pair,.spec{grid-template-columns:1fr}
+    .sheet:nth-of-type(even) .shot{order:0}
+    .pair > div + div{border-left:0;border-top:1px solid var(--line)}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  @media print{
+    .rail{display:none} main{margin:0} section{break-inside:avoid-page;padding:14mm 12mm}
+    .cover{min-height:0} body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<nav class="rail" id="rail" aria-label="Sections">
+  <img src="logo/svg/hair-division-roundel-colour.svg" alt="Hair Division Takapuna">
+  <a href="#logo"><i>01</i>Logo</a>
+  <a href="#colour"><i>02</i>Colour</a>
+  <a href="#type"><i>03</i>Type</a>
+  <a href="#shapes"><i>04</i>Shapes</a>
+  <a href="#voice"><i>05</i>Voice</a>
+  <a href="#shopfront"><i>06</i>Shopfront</a>
+  <a href="#print"><i>07</i>Print files</a>
+  <a href="#files"><i>08</i>Downloads</a>
+  <p class="ver">Brand guidelines<br>Version 1.0 · Nov 2026</p>
+</nav>
+
+<main>
+
+<section class="cover">
+  <div>
+    <span class="label">Hair Division · Takapuna</span>
+    <h1 class="serif">Brand <em>guidelines.</em></h1>
+    <p>Everything needed to make Hair Division look like Hair Division — on the shopfront, on paper and on screen. Hand this page, and the files at the bottom of it, to any signwriter, printer or designer.</p>
+    <div class="meta">
+      <span>For<b>Raine &amp; the team</b></span>
+      <span>Salon<b>446 Lake Road, Takapuna</b></span>
+      <span>Version<b>1.0</b></span>
+    </div>
+  </div>
+  <div class="cover-arch"><img src="logo/svg/hair-division-monogram-white.svg" alt=""></div>
+</section>
+
+<!-- ================= 01 LOGO ================= -->
+<section id="logo">
+  <header>
+    <span class="label">01 · Logo</span>
+    <h2 class="serif">One mark, <em>four shapes.</em></h2>
+    <p>The logo has been redrawn as clean vector artwork from the original, so it stays sharp at any size — from an appointment card to a two-metre fascia. Pick the shape that fits the space; never redraw or retype it.</p>
+  </header>
+
+  <div class="grid g2">
+    <figure>
+      <div class="tile t-porcelain"><img src="logo/svg/hair-division-roundel-colour.svg" alt="Roundel logo"></div>
+      <figcaption class="cap"><span><b>Roundel</b> — the primary logo. Windows, cards, social profile.</span><a href="logo/svg/hair-division-roundel-colour.svg" download>SVG</a></figcaption>
+    </figure>
+    <figure>
+      <div class="tile t-porcelain wide"><img src="logo/svg/hair-division-lockup-colour.svg" alt="Horizontal lockup"></div>
+      <figcaption class="cap"><span><b>Lockup</b> — for wide spaces. Fascia sign, website header, letterhead.</span><a href="logo/svg/hair-division-lockup-colour.svg" download>SVG</a></figcaption>
+    </figure>
+    <figure>
+      <div class="tile t-porcelain"><img src="logo/svg/hair-division-monogram-colour.svg" alt="HD monogram" style="max-height:150px"></div>
+      <figcaption class="cap"><span><b>Monogram</b> — small or square spaces. App icon, stickers, retail bags.</span><a href="logo/svg/hair-division-monogram-colour.svg" download>SVG</a></figcaption>
+    </figure>
+    <figure>
+      <div class="tile t-porcelain wide"><img src="logo/svg/hair-division-wordmark-colour.svg" alt="Wordmark" style="max-height:110px"></div>
+      <figcaption class="cap"><span><b>Wordmark</b> — when the monogram already appears nearby.</span><a href="logo/svg/hair-division-wordmark-colour.svg" download>SVG</a></figcaption>
+    </figure>
+  </div>
+
+  <div class="sub">
+    <span class="label">Colourways</span>
+    <div class="grid g4">
+      <figure><div class="tile t-paper"><img src="logo/svg/hair-division-roundel-colour.svg" alt=""></div><figcaption class="cap"><span><b>Colour</b> on white or porcelain</span></figcaption></figure>
+      <figure><div class="tile t-ink"><img src="logo/svg/hair-division-roundel-reversed.svg" alt=""></div><figcaption class="cap"><span><b>Reversed</b> on ink or black</span></figcaption></figure>
+      <figure><div class="tile t-sage"><img src="logo/svg/hair-division-roundel-white.svg" alt=""></div><figcaption class="cap"><span><b>White</b> on eucalyptus, glass, photos</span></figcaption></figure>
+      <figure><div class="tile t-sand"><img src="logo/svg/hair-division-roundel-ink.svg" alt=""></div><figcaption class="cap"><span><b>Ink</b> for one-colour print, stamps, embossing</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="sub grid g2" style="align-items:start">
+    <div>
+      <span class="label" style="display:block;margin-bottom:1.3rem">Clear space</span>
+      <div class="clear"><img src="logo/svg/hair-division-roundel-colour.svg" alt=""></div>
+      <p style="margin-top:1.2rem">Keep a margin of <strong>x</strong> clear on every side, where x is the height of the letter H in “HAIR”<span style="white-space:nowrap"> — roughly</span> one-tenth of the roundel’s width. No text, edges or other logos inside it.</p>
+    </div>
+    <div>
+      <span class="label" style="display:block;margin-bottom:1.3rem">Smallest sizes</span>
+      <table class="files">
+        <tr><th>Logo</th><th>Print</th><th>Screen</th></tr>
+        <tr><td>Roundel</td><td>25 mm wide</td><td>96 px</td></tr>
+        <tr><td>Lockup</td><td>45 mm wide</td><td>180 px</td></tr>
+        <tr><td>Wordmark</td><td>30 mm wide</td><td>130 px</td></tr>
+        <tr><td>Monogram</td><td>8 mm wide</td><td>24 px</td></tr>
+      </table>
+      <p style="margin-top:1rem;color:var(--ink-soft);font-size:.92rem">Below these sizes “Takapuna” stops being readable — switch to the monogram.</p>
+    </div>
+  </div>
+
+  <div class="sub">
+    <span class="label">Please don’t</span>
+    <div class="grid g4 dont">
+      <figure><div class="tile t-paper"><img src="logo/svg/hair-division-roundel-colour.svg" alt="" style="transform:scaleX(1.45)"></div><figcaption class="cap"><span>Stretch or squash it</span></figcaption></figure>
+      <figure><div class="tile t-paper"><img src="logo/svg/hair-division-roundel-colour.svg" alt="" style="filter:hue-rotate(150deg) saturate(3)"></div><figcaption class="cap"><span>Change the colours</span></figcaption></figure>
+      <figure><div class="tile" style="background:#8fa7a3"><img src="logo/svg/hair-division-roundel-colour.svg" alt=""></div><figcaption class="cap"><span>Put the colour logo on a mid-tone — use white</span></figcaption></figure>
+      <figure><div class="tile t-paper"><img src="logo/svg/hair-division-roundel-colour.svg" alt="" style="transform:rotate(-14deg);filter:drop-shadow(5px 7px 4px rgba(0,0,0,.45))"></div><figcaption class="cap"><span>Tilt it, or add shadows and effects</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 COLOUR ================= -->
+<section id="colour">
+  <header>
+    <span class="label">02 · Colour</span>
+    <h2 class="serif">Eucalyptus, ink <em>and porcelain.</em></h2>
+    <p>Three colours do almost all the work. Eucalyptus is sampled directly from the logo. Tap any swatch to copy its HEX value.</p>
+  </header>
+
+  <div class="grid g3" id="swatches"></div>
+
+  <div class="sub">
+    <span class="label">How much of each</span>
+    <div class="bar" aria-hidden="true">
+      <i style="flex:52;background:var(--porcelain)"></i><i style="flex:8;background:var(--mist)"></i><i style="flex:6;background:var(--sand)"></i>
+      <i style="flex:22;background:var(--ink)"></i><i style="flex:9;background:var(--sage)"></i><i style="flex:3;background:var(--deep)"></i>
+    </div>
+    <p style="margin-top:1rem;color:var(--ink-soft)">Mostly porcelain and air, grounded by ink, with eucalyptus as the accent — a ring, a line, one word in italics. If a layout looks green, there is too much of it.</p>
+  </div>
+
+  <div class="sub">
+    <span class="label">Readable pairings</span>
+    <div class="ratio" id="ratios"></div>
+    <p style="margin-top:1rem;color:var(--ink-soft);font-size:.92rem">The number is the contrast ratio. 4.5 or more is comfortable for body text; 3 or more is fine for headlines and logos. Eucalyptus on a light background is for shapes and large type only — use Deep eucalyptus for small text.</p>
+  </div>
+
+  <div class="sub">
+    <span class="label">For the printer and signwriter</span>
+    <p>CMYK values here are calculated starting points, not press-proofed. Ask for a printed proof and approve it against this page on a good screen. For vinyl and paint, have the supplier match their nearest stock colour to a printed swatch rather than to a code — and keep the sample they choose, so every future job matches it.</p>
+  </div>
+</section>
+
+<!-- ================= 03 TYPE ================= -->
+<section id="type">
+  <header>
+    <span class="label">03 · Type</span>
+    <h2 class="serif">A serif that speaks, <em>a sans that whispers.</em></h2>
+    <p>Two free typefaces. Cormorant Garamond carries the headlines and anything with feeling; Jost handles the practical details. Both are in the downloads below and at fonts.google.com.</p>
+  </header>
+
+  <div class="grid g2">
+    <div>
+      <div class="face">Aa</div>
+      <h3 style="margin-top:1rem">Cormorant Garamond</h3>
+      <p style="color:var(--ink-soft)">Medium and Medium Italic. Headlines, service names, people’s names, prices on signs.</p>
+      <p class="glyphs serif" style="font-weight:400">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 &amp;</p>
+    </div>
+    <div>
+      <div class="face sans">Aa</div>
+      <h3 style="margin-top:1rem">Jost</h3>
+      <p style="color:var(--ink-soft)">Light for reading text, Regular for labels. Body copy, hours, addresses, small print.</p>
+      <p class="glyphs">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 &amp;</p>
+    </div>
+  </div>
+
+  <div class="sub">
+    <span class="label">In use</span>
+    <div class="spec"><small><b>Headline</b>Cormorant Medium<br>Tight line spacing</small><p class="serif" style="font-size:clamp(2.2rem,5vw,4rem);max-width:none">Beautiful hair, <em>thirty years</em> in the making.</p></div>
+    <div class="spec"><small><b>Label</b>Jost Regular, capitals<br>Spaced wide, like “Takapuna”</small><p class="label" style="font-size:.8rem">Cut · Colour · Care</p></div>
+    <div class="spec"><small><b>Item</b>Cormorant Medium</small><p class="serif" style="font-size:1.7rem;line-height:1.2">Half-head foils</p></div>
+    <div class="spec"><small><b>Reading text</b>Jost Light<br>Generous line spacing</small><p>Established in 2008, our Takapuna hair salon combines expert hair care with a friendly and relaxed environment.</p></div>
+    <div class="spec"><small><b>The accent</b>One word or phrase per headline in italic, Deep eucalyptus</small><p class="serif" style="font-size:1.9rem;line-height:1.2">Come in, <em>sit down,</em> take your time.</p></div>
+  </div>
+  <p style="margin-top:1.6rem;color:var(--ink-soft);font-size:.92rem">The words inside the logo are set in Montserrat and are fixed artwork — never retype them. Sentence case everywhere else; capitals only for short labels.</p>
+</section>
+
+<!-- ================= 04 SHAPES ================= -->
+<section id="shapes">
+  <header>
+    <span class="label">04 · Shapes</span>
+    <h2 class="serif">The arch, the ring <em>and the line.</em></h2>
+    <p>Three simple shapes, all taken from things already in the salon and the logo. Use one per layout, large and calm.</p>
+  </header>
+  <div class="grid g4">
+    <figure><div class="motif"><div class="m-arch"></div></div><figcaption class="cap"><span><b>The arch.</b> From the black arched shelf at reception. Frames a photo or holds the monogram.</span></figcaption></figure>
+    <figure><div class="motif"><div class="m-arch line"></div></div><figcaption class="cap"><span><b>Arch outline.</b> A fine frame for signs and printed pieces.</span></figcaption></figure>
+    <figure><div class="motif"><div class="m-ring"></div></div><figcaption class="cap"><span><b>The ring.</b> From the logo. A quiet accent behind a photo or heading.</span></figcaption></figure>
+    <figure><div class="motif"><div class="m-device"><i></i></div></div><figcaption class="cap"><span><b>The line.</b> Line, dot, line — the logo’s divider. Separates two pieces of text.</span></figcaption></figure>
+  </div>
+  <div class="sub grid g2">
+    <div>
+      <h3>Materials</h3>
+      <p>The salon already has its own palette of materials: <strong>matte black steel</strong> (the arch shelf), <strong>antique gold</strong> (the mirror frames), white joinery and glass. Signage should feel like part of that room — matte black panels, white or eucalyptus lettering, and brushed brass as the one metal if a metal is wanted. Avoid gloss, chrome and LED colour-changing effects.</p>
+    </div>
+    <div>
+      <h3>Photography</h3>
+      <p>Real people, real salon, natural window light. Hair is the subject — finished results from behind or three-quarter, hands at work, the arch shelf, the Wella range. Warm and slightly soft rather than sharp and glossy. No stock models, no heavy filters, and always ask the client before posting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 VOICE ================= -->
+<section id="voice">
+  <header>
+    <span class="label">05 · Voice</span>
+    <h2 class="serif">Warm, sure, <em>unhurried.</em></h2>
+    <p>Hair Division sounds like Raine does in the chair: thirty years of experience, said plainly. Confident without selling, friendly without gushing.</p>
+  </header>
+  <div class="pair">
+    <div>
+      <span class="label">Sounds like us</span>
+      <ul style="margin-top:1rem">
+        <li>Come in, sit down, take your time.</li>
+        <li>Thirty years of good hair days.</li>
+        <li>Your exact quote is confirmed before we begin.</li>
+        <li>Expert hair care in a friendly, relaxed environment.</li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Doesn’t sound like us</span>
+      <ul style="margin-top:1rem">
+        <li>Pamper yourself today!!</li>
+        <li>Auckland’s #1 hair experts</li>
+        <li>HUGE SALE — 50% off all colour</li>
+        <li>Luscious tresses await, queen</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sub grid g3">
+    <div><h3>Plain words</h3><p>Cut, colour, care. Say what it is. Sentence case, no exclamation marks.</p></div>
+    <div><h3>Craft before price</h3><p>Lead with experience and how the visit feels. Offers, when there are any, are stated once and quietly.</p></div>
+    <div><h3>Local and personal</h3><p>Takapuna, Lake Road, Raine, Ivy — use real names. People book with a person, not a brand.</p></div>
+  </div>
+</section>
+
+<!-- ================= 06 SHOPFRONT ================= -->
+<section id="shopfront">
+  <header>
+    <span class="label">06 · Shopfront</span>
+    <h2 class="serif">How it comes together <em>on Lake Road.</em></h2>
+    <p>A sketch of the full set working together — not a survey of the real building. Your signwriter will measure up and scale each piece; the proportions and materials are what matter.</p>
+  </header>
+
+  <div class="shop">
+    <svg viewBox="0 0 1200 640" role="img" aria-label="Illustration of the Hair Division shopfront with fascia sign, blade sign, window logo, door hours and A-frame">
+      <rect width="1200" height="640" fill="#dfe5e2"/>
+      <rect y="560" width="1200" height="80" fill="#c9cbc4"/>
+      <rect y="556" width="1200" height="6" fill="#b4b6ae"/>
+      <!-- building -->
+      <rect x="130" y="70" width="900" height="490" fill="#f3f1ec"/>
+      <rect x="130" y="70" width="900" height="26" fill="#e6e2d9"/>
+      <!-- 1 fascia -->
+      <rect x="170" y="120" width="820" height="118" fill="#20231F"/>
+      <image href="logo/svg/hair-division-lockup-reversed.svg" x="330" y="139" width="500" height="80"/>
+      <!-- glazing -->
+      <rect x="170" y="262" width="560" height="298" fill="#b9c8c6"/>
+      <rect x="170" y="262" width="560" height="298" fill="url(#glass)"/>
+      <rect x="750" y="262" width="240" height="298" fill="#b9c8c6"/>
+      <rect x="750" y="262" width="240" height="298" fill="url(#glass)"/>
+      <rect x="170" y="262" width="560" height="298" fill="none" stroke="#20231F" stroke-width="6"/>
+      <rect x="750" y="262" width="240" height="298" fill="none" stroke="#20231F" stroke-width="6"/>
+      <rect x="170" y="508" width="560" height="52" fill="#20231F"/>
+      <rect x="960" y="400" width="8" height="46" rx="4" fill="#B08D57"/>
+      <defs><linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".45" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#20231F" stop-opacity=".2"/></linearGradient></defs>
+      <!-- 3 window roundel -->
+      <image href="logo/svg/hair-division-roundel-white.svg" x="355" y="290" width="190" height="190"/>
+      <!-- 4 door hours -->
+      <image href="logo/svg/hair-division-monogram-white.svg" x="850" y="300" width="40" height="36"/>
+      <g fill="#fff"><rect x="832" y="348" width="76" height="2"/><rect x="838" y="360" width="64" height="2" opacity=".8"/><rect x="838" y="370" width="64" height="2" opacity=".8"/><rect x="838" y="380" width="64" height="2" opacity=".8"/><rect x="846" y="396" width="48" height="3"/></g>
+      <!-- 2 blade -->
+      <rect x="1030" y="176" width="46" height="5" fill="#20231F"/>
+      <circle cx="1112" cy="178" r="46" fill="#20231F"/>
+      <image href="logo/svg/hair-division-roundel-reversed.svg" x="1072" y="138" width="80" height="80"/>
+      <!-- 5 a-frame -->
+      <g transform="translate(52 430)">
+        <path d="M0 150 12 0h66l12 150z" fill="#F7F5F0" stroke="#20231F" stroke-width="3"/>
+        <path d="M17 128V52a28 28 0 0 1 56 0v76" fill="none" stroke="#749E98" stroke-width="2"/>
+        <image href="logo/svg/hair-division-monogram-colour.svg" x="30" y="44" width="30" height="27"/>
+        <rect x="27" y="84" width="36" height="3" fill="#20231F"/><rect x="31" y="93" width="28" height="3" fill="#3E605B"/>
+        <path d="M4 128h82l4 22H0z" fill="#20231F"/>
+      </g>
+      <!-- markers -->
+      <g font-family="Cormorant Garamond,Georgia,serif" font-size="22" font-weight="500" text-anchor="middle">
+        <g fill="#749E98"><circle cx="208" cy="179" r="16"/><circle cx="1112" cy="252" r="16"/><circle cx="450" cy="492" r="16" stroke="#fff"/><circle cx="870" cy="432" r="16" stroke="#fff"/><circle cx="97" cy="408" r="16"/></g>
+        <g fill="#fff"><text x="208" y="186">1</text><text x="1112" y="259">2</text><text x="450" y="499">3</text><text x="870" y="439">4</text><text x="97" y="415">5</text></g>
+      </g>
+    </svg>
+  </div>
+  <div class="legend">
+    <div><b>1</b><h4>Fascia sign</h4><p>Matte black panel, lockup in white and eucalyptus. Flat-cut or raised letters; brushed brass is the upgrade.</p></div>
+    <div><b>2</b><h4>Blade sign</h4><p>Round, double-sided, at right angles to the street so people walking Lake Road see it before they arrive.</p></div>
+    <div><b>3</b><h4>Window logo</h4><p>The white roundel in matte white cut vinyl, centred at eye level. Keep the rest of the glass clear.</p></div>
+    <div><b>4</b><h4>Door hours</h4><p>White cut vinyl on the door glass: monogram, hours, phone and website. Nothing else on the door.</p></div>
+    <div><b>5</b><h4>A-frame</h4><p>One line and a phone number, readable in the three seconds someone takes to walk past.</p></div>
+  </div>
+</section>
+
+<!-- ================= 07 PRINT FILES ================= -->
+<section id="print">
+  <header>
+    <span class="label">07 · Print files</span>
+    <h2 class="serif">Ready to send <em>to the printer.</em></h2>
+    <p>Each piece is a vector PDF at its real size in millimetres. Printed items include a 3 mm bleed. Items marked <span class="flag" style="margin:0">Check</span> use details that need Raine’s sign-off before anything is produced.</p>
+  </header>
+
+  <article class="sheet">
+    <div class="shot"><img src="previews/fascia-sign-2400x600.png" alt="Fascia sign artwork" loading="lazy"></div>
+    <div>
+      <h3>Shopfront fascia sign</h3>
+      <p>The name above the door. The artwork is a 4:1 template — it scales to whatever the real fascia measures.</p>
+      <ul>
+        <li><span>Size</span><span>2400 × 600 mm template; scale to fit</span></li>
+        <li><span>Material</span><span>Matte black aluminium composite panel, or painted fascia</span></li>
+        <li><span>Lettering</span><span>White and eucalyptus cut vinyl, or raised acrylic / brushed-brass letters</span></li>
+        <li><span>Rule</span><span>Logo height about half the panel height</span></li>
+      </ul>
+      <a class="btn" href="signage/pdf/fascia-sign-2400x600.pdf" download>Download PDF</a>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="shot"><img src="previews/blade-sign-500.png" alt="Round blade sign artwork" loading="lazy" style="max-height:340px;box-shadow:none"></div>
+    <div>
+      <h3>Projecting blade sign</h3>
+      <p>The piece that does the most for foot traffic: visible along the footpath, not only from across the road.</p>
+      <ul>
+        <li><span>Size</span><span>500 mm diameter, double-sided</span></li>
+        <li><span>Material</span><span>Matte black disc on a black wall bracket; printed or vinyl faces</span></li>
+        <li><span>Note</span><span>Check with the landlord and Auckland Council signage rules before installing anything that projects over the footpath</span></li>
+      </ul>
+      <a class="btn" href="signage/pdf/blade-sign-500.pdf" download>Download PDF</a>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="shot" style="background:var(--mist)"><img src="previews/door-hours-decal-300x420.png" alt="Door opening hours decal" loading="lazy"></div>
+    <div>
+      <h3>Door hours decal <span class="flag">Check hours</span></h3>
+      <p>Everything a passer-by needs when the salon is closed. Shown on grey to stand in for glass — the artwork itself is all white.</p>
+      <ul>
+        <li><span>Size</span><span>300 × 420 mm</span></li>
+        <li><span>Material</span><span>Matte white cut vinyl, applied to the inside of the glass</span></li>
+        <li><span>Position</span><span>Centred on the door, about 1500 mm from the ground to the middle</span></li>
+      </ul>
+      <a class="btn" href="signage/pdf/door-hours-decal-300x420.pdf" download>Download PDF</a>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="shot"><img src="previews/a-frame-600x900.png" alt="A-frame footpath sign, both sides" loading="lazy" style="max-height:560px"></div>
+    <div>
+      <h3>Footpath A-frame</h3>
+      <p>Two sides, two jobs. The light side faces the main flow of foot traffic and carries the line and the number; the dark side is simply the name.</p>
+      <ul>
+        <li><span>Size</span><span>600 × 900 mm per side</span></li>
+        <li><span>Material</span><span>Weatherproof printed panels with matte laminate, in a black frame</span></li>
+      </ul>
+      <a class="btn" href="signage/pdf/a-frame-600x900.pdf" download>Download PDF</a>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="shot"><img src="previews/price-list-a4.png" alt="A4 service menu" loading="lazy"></div>
+    <div>
+      <h3>Service menu <span class="flag">Check prices</span></h3>
+      <p>For reception and the stations. The prices are the ones from the old website and are marked as a draft on the sheet itself.</p>
+      <ul>
+        <li><span>Size</span><span>A4, plus 3 mm bleed</span></li>
+        <li><span>Stock</span><span>300 gsm uncoated, or framed behind glass at reception</span></li>
+      </ul>
+      <a class="btn" href="signage/pdf/price-list-a4.pdf" download>Download PDF</a>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="shot"><img src="previews/appointment-card-90x55.png" alt="Business and appointment card, front and back" loading="lazy"></div>
+    <div>
+      <h3>Appointment card</h3>
+      <p>A business card on the front and a “your next visit” card on the back — so every client leaves with their next appointment written down.</p>
+      <ul>
+        <li><span>Size</span><span>90 × 55 mm, plus 3 mm bleed, two-sided</span></li>
+        <li><span>Stock</span><span>350–400 gsm uncoated, so the back takes a pen</span></li>
+      </ul>
+      <a class="btn" href="signage/pdf/appointment-card-90x55.pdf" download>Download PDF</a>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="shot"><img src="previews/gift-voucher-dl.png" alt="Gift voucher, front and back" loading="lazy"></div>
+    <div>
+      <h3>Gift voucher <span class="flag">Check terms</span></h3>
+      <p>Fits a standard DL envelope. The back is filled in by hand at the desk. Confirm the expiry wording against current NZ gift-card rules before printing.</p>
+      <ul>
+        <li><span>Size</span><span>210 × 99 mm (DL), plus 3 mm bleed, two-sided</span></li>
+        <li><span>Stock</span><span>300–350 gsm uncoated</span></li>
+      </ul>
+      <a class="btn" href="signage/pdf/gift-voucher-dl.pdf" download>Download PDF</a>
+    </div>
+  </article>
+</section>
+
+<!-- ================= 08 FILES ================= -->
+<section id="files">
+  <header>
+    <span class="label">08 · Downloads</span>
+    <h2 class="serif">Which file <em>for which job.</em></h2>
+    <p><strong>SVG</strong> is the master: vector, with all lettering converted to outlines, so no fonts are needed. Send SVG to signwriters and printers. <strong>PNG</strong> has a transparent background and is for Word, Canva, email and social media.</p>
+  </header>
+  <div class="scroller">
+  <table class="files" id="filetable">
+    <tr><th>Logo</th><th>Colour</th><th>Reversed</th><th>White</th><th>Ink</th></tr>
+  </table>
+  </div>
+  <div class="sub grid g3">
+    <div><h3>App &amp; social icon</h3><p>Square icon for Instagram, Facebook and Google profiles.</p><p><a href="logo/svg/hair-division-icon-porcelain.svg" download>Light SVG</a> · <a href="logo/png/hair-division-icon-porcelain.png" download>PNG</a><br><a href="logo/svg/hair-division-icon-ink.svg" download>Dark SVG</a> · <a href="logo/png/hair-division-icon-ink.png" download>PNG</a></p></div>
+    <div><h3>Fonts</h3><p>Installable font files, free under the Open Font Licence.</p><p><a href="fonts/CormorantGaramond-Medium.ttf" download>Cormorant Medium</a> · <a href="fonts/CormorantGaramond-MediumItalic.ttf" download>Italic</a><br><a href="fonts/Jost-Light.ttf" download>Jost Light</a> · <a href="fonts/Jost-Regular.ttf" download>Regular</a></p></div>
+    <div><h3>Updating a sheet</h3><p>Hours or prices changed? Edit the matching file in <code>brand/signage</code> and re-run <code>brand/tools/export_print.py</code> — every PDF is rebuilt.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer style="margin-left:var(--rail)" id="foot">
+  <img src="logo/svg/hair-division-lockup-reversed.svg" alt="Hair Division Takapuna">
+  <p>446 Lake Road, Takapuna · 09 488 9295 · hairdivision.co.nz</p>
+</footer>
+
+<script>
+  // ---- colour swatches -------------------------------------------------
+  var COLOURS = [
+    {name:'Ink', hex:'#20231F', cmyk:'10 · 0 · 12 · 86', use:'Text, dark panels, the H in the logo. A soft green-black, never pure black.', light:true},
+    {name:'Eucalyptus', hex:'#749E98', cmyk:'27 · 0 · 4 · 38', use:'The brand colour, from the logo. Shapes, rings, lines and large lettering.', light:true},
+    {name:'Porcelain', hex:'#F7F5F0', cmyk:'0 · 1 · 3 · 3', use:'The background for almost everything. Warm white, like the salon walls.'},
+    {name:'Deep eucalyptus', hex:'#3E605B', cmyk:'35 · 0 · 5 · 62', use:'Eucalyptus for small text: labels, links and the italic word in a headline.', light:true},
+    {name:'Mist', hex:'#EEF3F1', cmyk:'2 · 0 · 1 · 5', use:'A tinted panel behind a section, a voucher or a card.'},
+    {name:'Sand', hex:'#E7DFD2', cmyk:'0 · 3 · 9 · 9', use:'A warm neutral for photo borders and quiet backgrounds.'},
+    {name:'Brass', hex:'#B08D57', cmyk:'0 · 20 · 51 · 31', use:'A material, not an ink: brushed-brass letters or foil only. From the mirror frames.', light:true}
+  ];
+  function rgb(h){return [1,3,5].map(function(i){return parseInt(h.slice(i,i+2),16)})}
+  function lum(h){var c=rgb(h).map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+  function ratio(a,b){var x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+  var sw=document.getElementById('swatches');
+  COLOURS.forEach(function(c){
+    var b=document.createElement('button');b.className='swatch';b.type='button';
+    b.setAttribute('aria-label','Copy '+c.name+' '+c.hex);
+    b.innerHTML='<div class="chip" style="background:'+c.hex+';color:'+(c.light?'#fff':'#20231F')+'"><span>'+c.hex+'</span><span>Copy</span></div>'+
+      '<h3>'+c.name+'</h3><p>'+c.use+'</p><dl><dt>HEX</dt><dd>'+c.hex+'</dd><dt>RGB</dt><dd>'+rgb(c.hex).join(' · ')+'</dd><dt>CMYK</dt><dd>'+c.cmyk+'</dd></dl>';
+    b.addEventListener('click',function(){
+      var done=function(){var s=b.querySelector('.chip span:last-child');s.textContent='Copied';b.classList.add('copied');
+        setTimeout(function(){b.classList.remove('copied');s.textContent='Copy'},1400)};
+      if(navigator.clipboard){navigator.clipboard.writeText(c.hex).then(done,done)}else{done()}
+    });
+    sw.appendChild(b);
+  });
+  // ---- contrast pairings (computed, not hand-typed) ---------------------
+  [['#20231F','#F7F5F0','Ink on porcelain'],['#F7F5F0','#20231F','Porcelain on ink'],['#3E605B','#F7F5F0','Deep eucalyptus on porcelain'],
+   ['#749E98','#20231F','Eucalyptus on ink'],['#FFFFFF','#749E98','White on eucalyptus'],['#749E98','#F7F5F0','Eucalyptus on porcelain'],
+   ['#20231F','#EEF3F1','Ink on mist'],['#FFFFFF','#3E605B','White on deep eucalyptus']].forEach(function(p){
+    var r=ratio(p[0],p[1]),d=document.createElement('div');
+    d.style.background=p[1];d.style.color=p[0];
+    d.innerHTML='<b>'+(Math.floor(r*10)/10).toFixed(1)+'</b><span>'+p[2]+'</span><span style="opacity:.75">'+(r>=4.5?'Any text':r>=3?'Large text & logos':'Shapes only')+'</span>';
+    document.getElementById('ratios').appendChild(d);
+  });
+  // ---- download table ---------------------------------------------------
+  var tb=document.getElementById('filetable');
+  [['Roundel','roundel'],['Lockup','lockup'],['Monogram','monogram'],['Wordmark','wordmark']].forEach(function(l){
+    var tr=document.createElement('tr'),h='<td>'+l[0]+'</td>';
+    ['colour','reversed','white','ink'].forEach(function(s){var f='hair-division-'+l[1]+'-'+s;
+      h+='<td><a href="logo/svg/'+f+'.svg" download>SVG</a><a href="logo/png/'+f+'.png" download>PNG</a></td>'});
+    tr.innerHTML=h;tb.appendChild(tr);
+  });
+  // ---- rail: highlight the section in view ------------------------------
+  var links=[].slice.call(document.querySelectorAll('.rail a'));
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+    links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('main section[id]').forEach(function(s){io.observe(s)});
+  // footer follows the rail on small screens
+  var mq=matchMedia('(max-width:1020px)'),foot=document.getElementById('foot');
+  function fm(){foot.style.marginLeft=mq.matches?'0':''}; fm(); mq.addEventListener('change',fm);
+</script>
+</body>
+</html>

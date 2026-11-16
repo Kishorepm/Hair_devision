@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Hair Division — footpath A-frame sign, 600 × 900 mm</title>
+<link rel="stylesheet" href="print.css">
+<style>
+  @page{size:600mm 900mm;margin:0}
+  .page{--w:600mm;--h:900mm}
+  /* side A — porcelain, the arch as a frame */
+  .a{background:var(--porcelain);padding:38mm}
+  .a .frame{position:absolute;inset:38mm 38mm 150mm;border:2.6mm solid var(--sage);border-bottom:0}
+  .a .inner{position:absolute;inset:38mm 38mm 150mm;padding-top:92mm}
+  .a .roundel{width:236mm;height:236mm;margin-bottom:44mm}
+  .a h1{font-size:74mm}
+  .a .label{font-size:12.5mm;margin-top:40mm;color:var(--deep);letter-spacing:.34em;margin-right:-.34em}
+  .band{position:absolute;left:0;right:0;bottom:0;height:150mm;background:var(--ink);color:var(--porcelain)}
+  .band .tel{font-family:var(--serif);font-weight:500;font-size:56mm;line-height:1;letter-spacing:.01em}
+  .band .label{font-size:11.5mm;margin-top:13mm;color:var(--sage);letter-spacing:.34em;margin-right:-.34em}
+  /* side B — ink, quieter: the name and where to go */
+  .b{background:var(--ink);color:var(--porcelain);padding:60mm}
+  .b .mono{height:250mm;margin-bottom:54mm}
+  .b .word{width:420mm}
+  .b h2{font-size:50mm;margin-top:64mm;font-weight:400}
+  .b .label{font-size:12mm;margin-top:38mm;color:var(--sage);letter-spacing:.34em;margin-right:-.34em}
+</style></head>
+<body>
+<!-- Footpath A-frame. Side A faces the main flow of foot traffic, side B the other way.
+     Print on weatherproof panels (e.g. 3 mm ACM or corflute inserts), matte laminate. -->
+<section class="page a">
+  <div class="frame arch"></div>
+  <div class="inner center" style="justify-content:flex-start">
+    <img class="roundel" src="../logo/svg/hair-division-roundel-colour.svg" alt="Hair Division Takapuna">
+    <h1 class="serif">Thirty years of<br><em>good hair days.</em></h1>
+    <p class="label">Cut &nbsp;·&nbsp; Colour &nbsp;·&nbsp; Care</p>
+  </div>
+  <div class="band center">
+    <p class="tel">09 488 9295</p>
+    <p class="label">Book in &nbsp;·&nbsp; hairdivision.co.nz</p>
+  </div>
+</section>
+
+<section class="page b center">
+  <img class="mono" src="../logo/svg/hair-division-monogram-reversed.svg" alt="HD">
+  <img class="word" src="../logo/svg/hair-division-wordmark-reversed.svg" alt="Hair Division Takapuna">
+  <h2 class="serif">Come in, <em>sit down,</em><br>take your time.</h2>
+  <p class="label">Open Tuesday – Saturday</p>
+</section>
+</body></html>

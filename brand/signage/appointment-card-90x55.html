@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Hair Division — business / appointment card, 90 × 55 mm (3 mm bleed)</title>
+<link rel="stylesheet" href="print.css">
+<style>
+  /* NZ standard card 90 × 55 + 3 mm bleed each side */
+  @page{size:96mm 61mm;margin:0}
+  .page{--w:96mm;--h:61mm}
+  .front img{height:35mm}
+  .back{background:var(--porcelain);padding:9.5mm 10.5mm 0}
+  .back .label{font-size:1.75mm;color:var(--deep);letter-spacing:.32em}
+  .back h1{font-size:6.6mm;margin:1.2mm 0 3.4mm}
+  .line{display:flex;align-items:flex-end;gap:2mm;height:5.9mm;border-bottom:.2mm solid rgba(32,35,31,.38)}
+  .line span{font-size:1.65mm;letter-spacing:.24em;text-transform:uppercase;font-weight:400;color:var(--ink-soft);padding-bottom:1.1mm}
+  .two{display:grid;grid-template-columns:1.25fr 1fr;gap:4mm}
+  .back footer{position:absolute;left:10.5mm;right:10.5mm;bottom:8mm;display:flex;justify-content:space-between;align-items:baseline}
+  .back footer p{font-size:1.75mm;letter-spacing:.14em;font-weight:400}
+  .back footer .tel{font-family:var(--serif);font-weight:500;font-size:3.5mm;letter-spacing:.02em}
+  .hint{position:absolute;left:10.5mm;right:10.5mm;bottom:3.6mm;font-size:1.45mm;letter-spacing:.06em;color:var(--ink-soft)}
+</style></head>
+<body>
+<!-- One card does two jobs: a business card on the front, a "next appointment" card on the
+     back, so every client leaves with their rebooking written down.
+     Stock: 350–400 gsm uncoated (so the back can be written on with a pen). -->
+<section class="page front on-ink center">
+  <img src="../logo/svg/hair-division-roundel-reversed.svg" alt="Hair Division Takapuna">
+</section>
+
+<section class="page back">
+  <p class="label">Your next visit</p>
+  <h1 class="serif">See you <em>soon.</em></h1>
+  <div class="two">
+    <div class="line"><span>Date</span></div>
+    <div class="line"><span>Time</span></div>
+  </div>
+  <div class="line"><span>With</span></div>
+  <footer>
+    <p>446 Lake Road, Takapuna</p>
+    <p class="tel">09 488 9295</p>
+    <p>hairdivision.co.nz</p>
+  </footer>
+</section>
+</body></html>

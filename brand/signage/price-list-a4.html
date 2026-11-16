@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Hair Division — service menu, A4 (3 mm bleed)</title>
+<link rel="stylesheet" href="print.css">
+<style>
+  /* trim 210 × 297 + 3 mm bleed each side */
+  @page{size:216mm 303mm;margin:0}
+  .page{--w:216mm;--h:303mm;background:var(--porcelain);padding:21mm 36mm 0}
+  header{text-align:center}
+  header img{height:19mm;margin:0 auto 5mm}
+  header .label{font-size:2.5mm;color:var(--deep);letter-spacing:.36em;margin-right:-.36em}
+  header h1{font-size:14.5mm;margin-top:3mm}
+  .device{margin:6mm 0 8mm;--dl:26mm}
+  .cols{display:grid;row-gap:6mm}
+  .grp.wide{grid-column:1 / -1}
+  .grp h2{font-family:var(--sans);font-weight:400;font-size:2.6mm;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--deep);padding-bottom:2.6mm;margin-bottom:1.6mm;border-bottom:.25mm solid rgba(32,35,31,.22)}
+  .row{display:flex;align-items:baseline;gap:3mm;padding:2.05mm 0}
+  .row .n{font-family:var(--serif);font-weight:500;font-size:6.1mm;line-height:1.1}
+  .row .dots{flex:1;border-bottom:.3mm dotted rgba(32,35,31,.34);transform:translateY(-1mm)}
+  .row .p{font-size:3.4mm;font-weight:400;color:var(--ink-soft);white-space:nowrap}
+  .row .p b{font-weight:500;color:var(--ink);font-size:3.9mm}
+  .note{margin-top:6mm;text-wrap:balance;text-align:center;font-family:var(--serif);font-style:italic;font-size:4.5mm;color:var(--ink-soft)}
+  footer{position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:var(--porcelain);
+    padding:8.5mm 36mm 11.5mm;display:flex;justify-content:space-between;align-items:baseline}
+  footer .label{font-size:2.4mm;letter-spacing:.28em}
+  footer .tel{font-family:var(--serif);font-weight:500;font-size:6.2mm}
+  .draft{position:absolute;top:8mm;right:9mm;font-size:2.2mm;letter-spacing:.2em;text-transform:uppercase;
+    color:#a4472f;border:.25mm solid #a4472f;padding:1.2mm 2mm;font-weight:500}
+</style></head>
+<body>
+<!-- In-salon service menu, A4. Print on uncoated 300 gsm stock and stand it at reception.
+     DRAFT PRICES — these are from the old website. Confirm every line with Raine, then delete
+     the red "Draft" tag below before printing. -->
+<section class="page">
+  <span class="draft">Draft · prices to confirm</span>
+  <header>
+    <img src="../logo/svg/hair-division-monogram-colour.svg" alt="HD">
+    <p class="label">Hair Division · Takapuna</p>
+    <h1 class="serif">Services <em>&amp;</em> pricing</h1>
+  </header>
+  <div class="device"><i></i></div>
+
+  <div class="cols">
+    <div class="grp">
+      <h2>Cut &amp; style</h2>
+      <div class="row"><span class="n">Women’s cut</span><span class="dots"></span><span class="p">from <b>$110</b></span></div>
+      <div class="row"><span class="n">Men’s cut</span><span class="dots"></span><span class="p"><b>$65</b></span></div>
+      <div class="row"><span class="n">Student cut</span><span class="dots"></span><span class="p">on request</span></div>
+      <div class="row"><span class="n">Blow wave</span><span class="dots"></span><span class="p">from <b>$55</b></span></div>
+      <div class="row"><span class="n">Occasion styling</span><span class="dots"></span><span class="p">on request</span></div>
+    </div>
+    <div class="grp">
+      <h2>Colour</h2>
+      <div class="row"><span class="n">Regrowth colour</span><span class="dots"></span><span class="p">from <b>$110</b></span></div>
+      <div class="row"><span class="n">Half-head foils</span><span class="dots"></span><span class="p">from <b>$142</b></span></div>
+      <div class="row"><span class="n">Full-head foils</span><span class="dots"></span><span class="p">to <b>$210</b></span></div>
+      <div class="row"><span class="n">Toner / gloss</span><span class="dots"></span><span class="p">on request</span></div>
+    </div>
+    <div class="grp">
+      <h2>Treatments &amp; home care</h2>
+        <div class="row"><span class="n">Conditioning treatment</span><span class="dots"></span><span class="p">add-on</span></div>
+        <div class="row"><span class="n">Smooth filler treatment</span><span class="dots"></span><span class="p">from <b>$250</b></span></div>
+        <div class="row"><span class="n">Wella home care</span><span class="dots"></span><span class="p">in salon</span></div>
+    </div>
+  </div>
+
+  <p class="note">Prices are starting points. Your exact quote is confirmed in a quick consultation, before we begin.</p>
+
+  <footer>
+    <span class="label">446 Lake Road, Takapuna</span>
+    <span class="tel">09 488 9295</span>
+    <span class="label">hairdivision.co.nz</span>
+  </footer>
+</section>
+</body></html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Hair Division — gift voucher, DL 210 × 99 mm (3 mm bleed)</title>
+<link rel="stylesheet" href="print.css">
+<style>
+  /* DL 210 × 99 + 3 mm bleed each side (fits a standard DL envelope) */
+  @page{size:216mm 105mm;margin:0}
+  .page{--w:216mm;--h:105mm}
+  /* front */
+  .front{background:var(--mist)}
+  .front .copy{position:absolute;left:21mm;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+  .front .label{font-size:2.5mm;color:var(--deep);letter-spacing:.38em}
+  .front h1{font-size:20mm;margin:5mm 0 6mm}
+  .front .sub{font-size:3.3mm;letter-spacing:.04em;color:var(--ink-soft);max-width:78mm;line-height:1.6}
+  .front .window{position:absolute;right:21mm;top:13mm;bottom:0;width:62mm;background:var(--sage)}
+  .front .window img{width:35mm;margin-top:-4mm}
+  /* back */
+  .back{background:var(--porcelain);padding:15mm 21mm 0;display:grid;grid-template-columns:1fr 62mm;column-gap:17mm}
+  .back .label{font-size:2.1mm;color:var(--deep);letter-spacing:.32em}
+  .back h2{font-size:8.5mm;margin:1.6mm 0 3mm}
+  .line{display:flex;align-items:flex-end;height:9.3mm;border-bottom:.2mm solid rgba(32,35,31,.38)}
+  .line span{font-size:1.9mm;letter-spacing:.24em;text-transform:uppercase;font-weight:400;color:var(--ink-soft);padding-bottom:1.5mm}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:7mm}
+  .terms{font-size:2.15mm;line-height:1.65;color:var(--ink-soft);margin-top:4.6mm}
+  .side{border-left:.2mm solid rgba(32,35,31,.2);padding-left:11mm;display:flex;flex-direction:column;justify-content:center;height:75mm}
+  .side img{width:30mm;margin-bottom:7mm}
+  .side p{font-size:2.5mm;line-height:1.75;letter-spacing:.05em;font-weight:400}
+  .side .tel{font-family:var(--serif);font-weight:500;font-size:5.6mm;letter-spacing:.02em;margin:1.5mm 0}
+</style></head>
+<body>
+<!-- Gift voucher, DL. Stock: 300–350 gsm uncoated; the back is written on by hand.
+     CHECK BEFORE PRINTING: the expiry wording against current NZ gift-card rules, and how Raine
+     wants to number and record vouchers. -->
+<section class="page front">
+  <div class="copy">
+    <p class="label">Gift voucher</p>
+    <h1 class="serif">A gift of<br><em>good hair.</em></h1>
+    <p class="sub">For cut, colour, care and Wella home care at Hair Division, Takapuna.</p>
+  </div>
+  <div class="window arch center"><img src="../logo/svg/hair-division-monogram-white.svg" alt="HD"></div>
+</section>
+
+<section class="page back">
+  <div>
+    <p class="label">Gift voucher</p>
+    <h2 class="serif">With love, <em>for you.</em></h2>
+    <div class="two">
+      <div class="line"><span>To</span></div>
+      <div class="line"><span>From</span></div>
+    </div>
+    <div class="two">
+      <div class="line"><span>Value</span></div>
+      <div class="line"><span>Voucher no.</span></div>
+    </div>
+    <div class="two">
+      <div class="line"><span>Issued</span></div>
+      <div class="line"><span>Signed</span></div>
+    </div>
+    <p class="terms">Valid for three years from the date of issue. Redeemable for services and Wella home care at Hair Division. Not redeemable for cash. Please mention your voucher when you book.</p>
+  </div>
+  <div class="side">
+    <img src="../logo/svg/hair-division-monogram-colour.svg" alt="HD">
+    <p>446 Lake Road<br>Takapuna, Auckland</p>
+    <p class="tel">09 488 9295</p>
+    <p>hairdivision.co.nz</p>
+  </div>
+</section>
+</body></html>
