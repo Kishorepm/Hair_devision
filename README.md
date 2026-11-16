@@ -15,6 +15,8 @@ owner's admin load.
 | `docs/okrs/` | The OKR tree and review check-ins. |
 | `docs/strategy/` | Operating model, KPI definitions, positioning. |
 | `docs/handover/` | Plain-English how-to guides for the owner. |
+| `index.html` + `assets/` | The live static website (deployed on Vercel from the repo root). |
+| `brand/` | Brand guidelines page (`brand/index.html`), vector logo suite, fonts, and print-ready signage PDFs. Rebuild with `python brand/tools/build_logos.py` and `python brand/tools/export_print.py`. |
 | `web/` | The Next.js website + CMS (sub-project 1, not built yet). |
 | `tools/` | Dashboards & automations (sub-projects 3–4, not built yet). |
 
