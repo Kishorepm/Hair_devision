@@ -1,8 +1,8 @@
-"""Hair Division — export print-ready PDFs, PNG previews and logo PNGs.
+"""Hair Division: export print-ready PDFs, PNG previews and logo PNGs.
 
 Uses headless Chrome (or Edge) to turn each sheet in brand/signage/*.html into
-  * brand/signage/pdf/<name>.pdf   — vector, exact millimetre size, fonts embedded
-  * brand/previews/<name>.png      — screen preview used by the brand guidelines page
+  * brand/signage/pdf/<name>.pdf  : vector, exact millimetre size, fonts embedded
+  * brand/previews/<name>.png     : screen preview used by the brand guidelines page
 and to rasterise the logo SVGs into transparent PNGs in brand/logo/png/.
 
 Run:  python brand/tools/export_print.py
@@ -29,7 +29,7 @@ CHROME = next((p for p in (
     "/usr/bin/google-chrome", "/usr/bin/chromium",
 ) if os.path.exists(p)), None)
 if not CHROME:
-    sys.exit("Chrome or Edge not found — install one, or edit CHROME in this script.")
+    sys.exit("Chrome or Edge not found: install one, or edit CHROME in this script.")
 
 MM = 96 / 25.4  # CSS px per millimetre
 

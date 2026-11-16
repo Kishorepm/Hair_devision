@@ -1,8 +1,8 @@
-"""Hair Division — logo suite generator.
+"""Hair Division: logo suite generator.
 
 Rebuilds every logo file in brand/logo/svg from two sources:
-  * monogram-trace.json  — the HD monogram, traced from the original artwork
-  * ../fonts/Montserrat-Regular.ttf — the wordmark typeface (set as outlines)
+  * monogram-trace.json : the HD monogram, traced from the original artwork
+  * ../fonts/Montserrat-Regular.ttf: the wordmark typeface (set as outlines)
 
 All text is converted to outlines, so the SVGs need no fonts installed and can go
 straight to a signwriter, printer or vinyl cutter.
@@ -202,7 +202,7 @@ def wordmark(scheme):
     return svg((-w / 2 - m, -m, w + 2 * m, h + 2 * m), body, "Hair Division Takapuna wordmark")
 
 
-# ---- 4. horizontal lockup (monogram + text) — fascia, letterhead, web nav -
+# ---- 4. horizontal lockup (monogram + text): fascia, letterhead, web nav -
 def lockup(scheme):
     a, b, c = SCHEMES[scheme]
     x0, y0, x1, y1 = MONO_BOX
